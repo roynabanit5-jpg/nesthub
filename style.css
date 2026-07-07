@@ -322,7 +322,35 @@ body{
 
 
 /* MOBILE */
+@media(max-width:900px){
 
+.navbar{
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.logo{
+    width:100%;
+}
+
+.location,
+.search,
+.nav-buttons{
+    display:flex;
+    width:100%;
+}
+
+.search{
+    width:100%;
+}
+
+.nav-buttons{
+    justify-content:space-between;
+}
+
+.menu{
+    display:none;
+}
 
 @media(max-width:900px){
 
