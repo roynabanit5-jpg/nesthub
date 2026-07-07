@@ -45,15 +45,40 @@ document.querySelectorAll(".add-cart").forEach(button => {
 
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-        document.querySelector(".cart span").textContent = totalItems;
 
-        this.innerHTML = "✅ Added";
+                            document.querySelectorAll(".add-cart").forEach(button => {
 
-        setTimeout(() => {
+    button.addEventListener("click", function () {
 
-            this.innerHTML = "Add to Cart";
+        const card = this.closest(".product-card");
 
-        }, 1000);
+        const name = card.querySelector("h3").innerText;
+
+        const price = parseInt(card.querySelector(".price").innerText.match(/\d+/)[0]);
+
+        const image = card.querySelector("img").src;
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let existing = cart.find(item => item.name === name);
+
+        if(existing){
+            existing.quantity += 1;
+        }else{
+            cart.push({
+                name:name,
+                price:price,
+                image:image,
+                quantity:1
+            });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        document.querySelector(".cart span").innerText =
+        cart.reduce((t,i)=>t+i.quantity,0);
+
+        alert(name + " added to cart!");
 
     });
 
