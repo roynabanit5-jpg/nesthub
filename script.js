@@ -1,40 +1,60 @@
-let cartCount = 0;
+
+// ==========================
+// ADD TO CART
+// ==========================
 
 document.querySelectorAll(".add-cart").forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", function () {
 
-        const card = button.closest(".product-card");
+        const card = this.closest(".product-card");
 
-        const product = {
-            name: card.querySelector("h3").textContent,
-            price: parseInt(card.querySelector(".price").textContent.replace(/[^\d]/g, "")),
-            image: card.querySelector("img").src,
-            quantity: 1
-        };
+        const name = card.querySelector("h3").innerText;
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const price = Number(
+            card.querySelector(".price").innerText
+            .replace(/[^\d]/g, "")
+        );
 
-        const existing = cart.find(item => item.name === product.name);
+        const image = card.querySelector("img").src;
 
-        if(existing){
-            existing.quantity++;
-        }else{
-            cart.push(product);
+        let cart = JSON.parse(localStorage.getItem("cart"));
+
+        if (!cart) {
+            cart = [];
+        }
+
+        const index = cart.findIndex(item => item.name === name);
+
+        if (index > -1) {
+
+            cart[index].quantity++;
+
+        } else {
+
+            cart.push({
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
 
-        cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-        document.querySelector(".cart span").textContent = cartCount;
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-        button.textContent = "Added ✓";
+        document.querySelector(".cart span").textContent = totalItems;
+
+        this.innerHTML = "✅ Added";
 
         setTimeout(() => {
-            button.textContent = "Add to Cart";
+
+            this.innerHTML = "Add to Cart";
+
         }, 1000);
 
     });
 
 });
-
