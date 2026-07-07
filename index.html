@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NestHub</title>
-  <style>
-    body{
-      margin:0;
-      font-family:Arial,sans-serif;
-      background:#f8f8f8;
-    }
-    header{
-      background:#0db561;
-      color:white;
-      padding:18px;
-      text-align:center;
-      font-size:28px;
-      font-weight:bold;
-    }
-    .hero{
-      padding:50px 20px;
-      text-align:center;
-    }
-    .btn{
-      background:#0db561;
-      color:white;
-      padding:12px 24px;
-      border:none;
-      border-radius:8px;
-      text-decoration:none;
-      display:inline-block;
-      margin-top:20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NestHub</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>🛒 NestHub</header>
+<header>
+    <div class="logo">🛒 NestHub</div>
+
+    <input type="text" placeholder="Search groceries, fruits, vegetables...">
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Categories</a>
+        <a href="#">Offers</a>
+        <a href="#">Cart</a>
+        <a href="#">Login</a>
+    </nav>
+</header>
 
 <section class="hero">
-  <h1>Fast Grocery Delivery</h1>
-  <p>Fresh groceries delivered to your doorstep in minutes.</p>
-  <a href="#" class="btn">Shop Now</a>
+    <h1>Groceries Delivered in Minutes</h1>
+    <p>Fresh fruits, vegetables, dairy, snacks and more.</p>
+
+    <button>Order Now</button>
 </section>
+
+<section class="categories">
+
+<h2>Shop by Category</h2>
+
+<div class="grid">
+
+<div class="card">🥬 Vegetables</div>
+
+<div class="card">🍎 Fruits</div>
+
+<div class="card">🥛 Dairy</div>
+
+<div class="card">🍪 Snacks</div>
+
+<div class="card">🥤 Drinks</div>
+
+<div class="card">🧴 Personal Care</div>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
 
 </body>
 </html>
