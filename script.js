@@ -4,7 +4,7 @@
 // Cart Counter
 const cartButton = document.querySelector(".cart");
 
-cartButton.addEventListener("click", () => {
+
     window.location.href = "cart.html";
 });
 });
