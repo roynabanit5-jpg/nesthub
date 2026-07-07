@@ -44,3 +44,27 @@ cartCount.innerText = cart.length;
 }
 
 }
+const cartItems = document.getElementById("cart-items");
+const total = document.getElementById("total");
+
+if(cartItems){
+
+let amount = 0;
+
+cart.forEach(item => {
+
+cartItems.innerHTML += `
+<div class="product-card">
+<img src="${item.image}">
+<h3>${item.name}</h3>
+<h4>${item.price}</h4>
+</div>
+`;
+
+amount += Number(item.price.replace("₹",""));
+
+});
+
+total.innerHTML = "Total : ₹" + amount;
+
+}
