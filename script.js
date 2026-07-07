@@ -1,62 +1,46 @@
-// NestHub Cart
+// ===== NestHub Cart =====
 
-let cartCount = 0;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".product-card button");
+const cartCount = document.getElementById("cart-count");
+
+updateCart();
 
 buttons.forEach(button => {
 
-button.addEventListener("click", function(){
+button.addEventListener("click", () => {
 
-cartCount++;
+const card = button.parentElement;
 
-alert("Item added to cart ✅");
+const product = {
 
-console.log("Cart Items:", cartCount);
+name: card.querySelector("h3").innerText,
+
+price: card.querySelector("h4").innerText,
+
+image: card.querySelector("img").src
+
+};
+
+cart.push(product);
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+updateCart();
+
+alert(product.name + " added to cart!");
+
+});
 
 });
 
-});
-const loginForm = document.getElementById("loginForm");
+function updateCart(){
 
-if(loginForm){
+if(cartCount){
 
-loginForm.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const email=document.getElementById("email").value;
-
-alert("Welcome back, " + email + "!");
-
-window.location.href="index.html";
-
-});
+cartCount.innerText = cart.length;
 
 }
-// NestHub Search
-
-const searchInput = document.querySelector(".search-box input");
-const products = document.querySelectorAll(".product-card");
-
-if(searchInput){
-
-searchInput.addEventListener("keyup",function(){
-
-const value = this.value.toLowerCase();
-
-products.forEach(product=>{
-
-const name = product.querySelector("h3").textContent.toLowerCase();
-
-if(name.includes(value)){
-product.style.display="block";
-}else{
-product.style.display="none";
-}
-
-});
-
-});
 
 }
