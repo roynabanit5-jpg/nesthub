@@ -2,16 +2,17 @@
 
 
 // Cart Counter
+const addButtons = document.querySelectorAll(".add-cart");
 
-let cartCount = 0;
+addButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        cartCount++;
 
-const cartButton = document.querySelector(".cart");
+        document.querySelector(".cart span").textContent = cartCount;
 
-cartButton.addEventListener("click", () => {
-
-    cartCount++;
-
-    cartButton.innerHTML = `🛒 Cart <span>${cartCount}</span>`;
+        alert("Item added to cart!");
+    });
+});
 
 });
 
