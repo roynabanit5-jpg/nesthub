@@ -1,85 +1,62 @@
-
 // ==========================
-// ADD TO CART
+// NESTHUB SCRIPT
 // ==========================
 
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Update cart badge
+function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    const cartSpan = document.querySelector(".cart span");
+    if (cartSpan) {
+        cartSpan.textContent = count;
+    }
+}
+
+updateCartCount();
+
+// Add To Cart
 document.querySelectorAll(".add-cart").forEach(button => {
 
     button.addEventListener("click", function () {
 
         const card = this.closest(".product-card");
 
-        const name = card.querySelector("h3").innerText;
+        const product = {
+            name: card.querySelector("h3").textContent,
+            price: parseInt(card.querySelector(".price").textContent.match(/\d+/)[0]),
+            image: card.querySelector("img").src,
+            quantity: 1
+        };
 
-        const price = Number(
-            card.querySelector(".price").innerText
-            .replace(/[^\d]/g, "")
-        );
+        const existing = cart.find(item => item.name === product.name);
 
-        const image = card.querySelector("img").src;
-
-        let cart = JSON.parse(localStorage.getItem("cart"));
-
-        if (!cart) {
-            cart = [];
-        }
-
-        const index = cart.findIndex(item => item.name === name);
-
-        if (index > -1) {
-
-            cart[index].quantity++;
-
+        if (existing) {
+            existing.quantity++;
         } else {
-
-            cart.push({
-                name: name,
-                price: price,
-                image: image,
-                quantity: 1
-            });
-
+            cart.push(product);
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
 
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        updateCartCount();
 
+        this.textContent = "Added ✓";
 
-                            document.querySelectorAll(".add-cart").forEach(button => {
-
-    button.addEventListener("click", function () {
-
-        const card = this.closest(".product-card");
-
-        const name = card.querySelector("h3").innerText;
-
-        const price = parseInt(card.querySelector(".price").innerText.match(/\d+/)[0]);
-
-        const image = card.querySelector("img").src;
-
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-        let existing = cart.find(item => item.name === name);
-
-        if(existing){
-            existing.quantity += 1;
-        }else{
-            cart.push({
-                name:name,
-                price:price,
-                image:image,
-                quantity:1
-            });
-        }
-
-        localStorage.setItem("cart", JSON.stringify(cart));
-
-        document.querySelector(".cart span").innerText =
-        cart.reduce((t,i)=>t+i.quantity,0);
-
-        alert(name + " added to cart!");
+        setTimeout(() => {
+            this.textContent = "Add to Cart";
+        }, 1000);
 
     });
 
 });
+
+// Open cart page
+const cartButton = document.querySelector(".cart");
+
+if (cartButton) {
+    cartButton.addEventListener("click", function () {
+        window.location.href = "cart.html";
+    });
+}
