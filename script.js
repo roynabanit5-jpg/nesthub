@@ -1,70 +1,125 @@
-// ===== NestHub Cart =====
+// NestHub Website JavaScript
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const buttons = document.querySelectorAll(".product-card button");
-const cartCount = document.getElementById("cart-count");
+// Cart Counter
 
-updateCart();
+let cartCount = 0;
 
-buttons.forEach(button => {
+const cartButton = document.querySelector(".cart");
 
-button.addEventListener("click", () => {
+cartButton.addEventListener("click", () => {
 
-const card = button.parentElement;
+    cartCount++;
 
-const product = {
-
-name: card.querySelector("h3").innerText,
-
-price: card.querySelector("h4").innerText,
-
-image: card.querySelector("img").src
-
-};
-
-cart.push(product);
-
-localStorage.setItem("cart", JSON.stringify(cart));
-
-updateCart();
-
-alert(product.name + " added to cart!");
+    cartButton.innerHTML = `🛒 Cart <span>${cartCount}</span>`;
 
 });
 
-});
 
-function updateCart(){
 
-if(cartCount){
+// Search Function
 
-cartCount.innerText = cart.length;
+const searchInput = document.querySelector(".search input");
 
-}
+searchInput.addEventListener("keypress", function(e){
 
-}
-const cartItems = document.getElementById("cart-items");
-const total = document.getElementById("total");
+    if(e.key === "Enter"){
 
-if(cartItems){
+        let value = searchInput.value.trim();
 
-let amount = 0;
+        if(value !== ""){
 
-cart.forEach(item => {
+            alert("Searching for: " + value);
 
-cartItems.innerHTML += `
-<div class="product-card">
-<img src="${item.image}">
-<h3>${item.name}</h3>
-<h4>${item.price}</h4>
-</div>
-`;
+        }
 
-amount += Number(item.price.replace("₹",""));
+    }
 
 });
 
-total.innerHTML = "Total : ₹" + amount;
 
-}
+
+
+// Buttons Animation
+
+const buttons = document.querySelectorAll("button");
+
+
+buttons.forEach(button=>{
+
+    button.addEventListener("mouseenter",()=>{
+
+        button.style.transform="scale(1.05)";
+
+    });
+
+
+    button.addEventListener("mouseleave",()=>{
+
+        button.style.transform="scale(1)";
+
+    });
+
+});
+
+
+
+
+// Mobile Menu
+
+const menu = document.querySelector(".menu");
+
+let menuOpen=false;
+
+
+menu.addEventListener("click",()=>{
+
+    menuOpen=!menuOpen;
+
+
+    if(menuOpen){
+
+        alert("Mobile menu opened");
+
+    }
+
+    else{
+
+        alert("Mobile menu closed");
+
+    }
+
+});
+
+
+
+
+// Smooth Scroll
+
+document.querySelector(".scroll").addEventListener("click",()=>{
+
+    window.scrollTo({
+
+        top:window.innerHeight,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+
+
+
+// Hero Animation On Load
+
+window.addEventListener("load",()=>{
+
+
+    document.querySelector(".hero-content").style.opacity="1";
+
+
+    document.querySelector(".hero-image").style.opacity="1";
+
+
+});
