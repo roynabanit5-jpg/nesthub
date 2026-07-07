@@ -123,3 +123,44 @@ window.addEventListener("load",()=>{
 
 
 });
+// Product Add To Cart
+
+const addButtons = document.querySelectorAll(".add-cart");
+
+addButtons.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+cartCount++;
+
+document.querySelector(".cart").innerHTML =
+`🛒 Cart <span>${cartCount}</span>`;
+
+button.innerHTML="Added ✓";
+
+setTimeout(()=>{
+
+button.innerHTML="Add to Cart";
+
+},1500);
+
+
+});
+
+
+});
+
+
+// Wishlist
+
+const wishlistButtons=document.querySelectorAll(".wishlist");
+
+wishlistButtons.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+btn.innerHTML="♥";
+
+});
+
+});
