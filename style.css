@@ -322,7 +322,91 @@ body{
 
 
 /* MOBILE */
-@media(max-width:900px){
+@media (max-width:900px){
+
+.navbar{
+    width:95%;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:15px;
+}
+
+.logo{
+    width:100%;
+    text-align:center;
+}
+
+.location{
+    width:100%;
+    text-align:center;
+}
+
+.search{
+    display:flex;
+    width:100%;
+}
+
+.search input{
+    width:100%;
+}
+
+.nav-buttons{
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.login,
+.cart{
+    flex:1;
+}
+
+.menu{
+    display:none;
+}
+
+.hero{
+    flex-direction:column;
+    text-align:center;
+}
+
+.hero-content,
+.hero-image{
+    width:100%;
+}
+
+.hero h1{
+    font-size:42px;
+}
+
+.hero p{
+    font-size:17px;
+}
+
+.hero-buttons{
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.stats{
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.circle{
+    width:280px;
+    height:280px;
+}
+
+.grocery-box{
+    font-size:50px;
+    padding:35px;
+}
+
+}
 
 .navbar{
     flex-wrap:wrap;
@@ -352,30 +436,7 @@ body{
     display:none;
 }
 
-@media(max-width:900px){
 
-
-.navbar{
-
-    width:95%;
-
-}
-
-
-.location,
-.search,
-.nav-buttons{
-
-    display:none;
-
-}
-
-
-.menu{
-
-    display:block;
-
-}
 
 
 .hero{
